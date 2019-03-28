@@ -3,6 +3,19 @@
 </template>
 <script>
 export default {
-  name: 'Index'
+  name: 'Index',
+  created () {
+    this.practiceMethod()
+  },
+  methods: {
+    practiceMethod () {
+      function* helloWorldGenerator () {
+        yield 'hello'
+        yield 'world'
+        return 'ending'
+      }
+      var hw = helloWorldGenerator()
+    }
+  }
 }
 </script>
