@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流与防抖</title>
+  <style>
+    #container{width: 100%; height: 200px; line-height: 200px; text-align: center; color: #fff;background-color: #444; font-size: 30px;}
+  </style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+// 1.防抖
+// 触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+function debounce(func, wait, immediate) {
+  var timeout, result;
+  var debounce = function () {
+    var context = this;
+    var args = arguments;
+    if (timeout) clearTimeout(timeout);
+    if (immediate) {
+      // 如果已经执行过，就不再执行
+      var callNow = !timeout;
+      timeout = setTimeout(function(){
+        timeout = null;
+      }, wait);
+      if (callNow) result = func.apply(context, args);
+    } else {
+      timeout = setTimeout(function(){
+        func.apply(context, args);
+      }, wait);
+    }
+    return result;
+  }
+  debounce.cancel = function() {
+    clearTimeout(timeout);
+    timeout = null;
+  }
+  return debounce;
+}
+
+// 2.节流
+// 高频事件触发，但在n秒内只执行一次，所以节流会稀释函数的执行频率
+
+function throttle(func, wait, options) {
+  var timeout, context, args, result;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function() {
+    previous = options.leading === false ? 0 : new Date().getTime();
+    timeout = null;
+    func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  var throttled = function() {
+    var now = +new Date();
+    if (!previous && options.leading === false) previous = now;
+    // 下次触发func剩余的时间
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    // 如果没有剩余的时间了或者你改了系统时间
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+  };
+  throttled.cancel = function() {
+    clearTimeout(timeout);
+    previous = 0;
+    timeout = null;
+  };
+  return throttled;
+}
+</script>
+</body>
+</html>
