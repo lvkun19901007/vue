@@ -8,19 +8,16 @@
 </head>
 <body>
 <script>
-var scope = 'global scope';
-
-function checkscope(s) {
-  var scope = 'local scope';
-
-  function f() {
-    return scope;
-  }
-  return f();
+let obj = {};
+function changeValue(obj){
+  console.log(obj);
+  obj.name = 'ConardLi';
+  console.log(obj);
+  obj = {name:'code秘密花园'};
+  console.log(obj);
 }
-console.log(checkscope('scope'))
-
-
+changeValue(obj);
+console.log(obj.name); // ConardLi
 </script>
 </body>
 </html>

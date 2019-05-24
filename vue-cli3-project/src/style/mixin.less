@@ -1,0 +1,13 @@
+@baseFontSize: 120;
+.px2rem(@name, @px){
+  @{name}: @px / @baseFontSize * 1rem;
+}
+.mt(@px){
+  .px2rem(margin-top, @px);
+}
+.fs(@px){
+  .px2rem(font-size, @px);
+}
+.w(@px){
+  .px2rem(width, @px);
+}

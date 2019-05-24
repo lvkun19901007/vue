@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-cli3-project</title>
+    <script>
+      (function () {
+        var html = document.documentElement
+        var resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        window.addEventListener(resizeEvent, function () {
+          html.style.fontSize = html.clientWidth / 12 + 'px'
+        })
+        html.style.fontSize = html.clientWidth / 12 + 'px'
+        window.onload = function () {
+          html.style.fontSize = html.clientWidth / 12 + 'px'
+        }
+      })()
+    </script>
   </head>
   <body>
     <noscript>
