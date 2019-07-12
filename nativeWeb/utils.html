@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+<script>
+/**
+*利用 a 标签解析 URL
+*/
+function parseURL(url) {
+  var a = document.createElement('a');
+  a.href = url;
+  return {
+    host: a.hostname,
+    port: a.port,
+    params: (function() {
+      var ret = {};
+      var seg = a.search.replace(/^\?/, '').split('&');
+      var len = seg.length;
+      var i = 0;
+      var s;
+      for (; i < len; i++) {
+        if (!seg[i]) {
+          continue;
+        }
+        s = seg[i].split('=');
+        ret[s[0]] = s[1];
+      }
+      return ret;
+    })(),
+    hash: a.hash.replace('#', '')
+  };
+}
+
+</script>
+</body>
+</html>

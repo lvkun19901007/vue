@@ -5,24 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .chapter::before{
+      content: '” ';
+      font-size: 15em;
+    }
+    .chapter p::first-letter{
+      float: left;
+      font-size: 3em;
+    }
+    .chapter p::first-line{
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
-  <ul>
-    <li><a href="/home">home</a></li>
-    <li><a href="/about">about</a></li>
-  </ul>
-  <div id="routeView"></div>
-<script>
-let obj = {};
-function changeValue(obj){
-  console.log(obj);
-  obj.name = 'ConardLi';
-  console.log(obj);
-  obj = {name:'code秘密花园'};
-  console.log(obj);
-}
-changeValue(obj);
-console.log(obj.name); // ConardLi
-</script>
+  <script>
+
+
+
+
+    function changeObjProperty(o) {
+      o.siteUrl = "http://www.baidu.com"
+      o = new Object()
+      o.siteUrl = "http://www.google.com"
+    } 
+    let webSite = new Object();
+    changeObjProperty(webSite);
+    console.log(webSite.siteUrl);
+
+
+    
+  </script>
 </body>
 </html>
