@@ -1,42 +1,31 @@
 <template>
-  <div class="home">
-    <div class="morning">早上好</div>
+  <div>
+    <ChildrenA />
   </div>
 </template>
-
 <script>
-// @ts-check
+import ChildrenA from "./ChildrenA";
 export default {
-  name: "Index",
-  data () {
-    return {
-      newDate: ''
-    }
-  },
-  created () {
-    this.getData()
-  },
-  methods: {
-    getData () {
-      /**
-       * @typedef {Object} person a peron.
-       * @property {string} name The person's name.
-       * @property {number} age The person's age.
-       * @property {Function} sayName A function that alerts the person's name.
-       */
-      const person = {
-        name: 23,
-        age: '32',
-        sayName () {
-          alert(this.name)
-        }
-      }
-    }
-  },
+  components: {
+    ChildrenA
+  }
 };
 </script>
-<style lang="less" scoped>
-.morning {
-  .fs(32);
+<style>
+.border,
+.border1,
+.border2 {
+  border: 1px solid #000;
+  padding: 10px 0;
+  margin: 10px 10px 0;
+}
+.border1 {
+  border-color: #ccc;
+}
+.border2 {
+  border-color: #eee;
+}
+body{
+  font-size: 20px;
 }
 </style>
