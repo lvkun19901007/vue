@@ -4,7 +4,7 @@ import router from "./router";
 // import store from "./store";
 import Vuex from "./min-vuex";
 
-// Vue.use(Vuex);
+Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     count: 0
@@ -13,13 +13,18 @@ const store = new Vuex.Store({
     increment(state) {
       state.count++;
     }
+  },
+  getters: {
+    doubleCount(state) {
+      return state.count * 2;
+    }
   }
 });
 
 Vue.config.productionTip = false;
-Vue.prototype.$store = store;
+// Vue.prototype.$store = store;
 new Vue({
   router,
-  // store,
+  store,
   render: h => h(App)
 }).$mount("#app");
