@@ -11,6 +11,7 @@ const router = new Router({
   routes: [
     {
       path: "/user",
+      hideInMenu: true,
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
       children: [
@@ -20,13 +21,11 @@ const router = new Router({
         },
         {
           path: "login",
-          name: "login",
           component: () =>
             import(/* webpackChunkName: "user" */ "./views/User/Login.vue")
         },
         {
           path: "register",
-          name: "register",
           component: () =>
             import(/* webpackChunkName: "user" */ "./views/User/Register.vue")
         }
@@ -64,7 +63,7 @@ const router = new Router({
           path: "/form",
           name: "form",
           component: { render: h => h("router-view") },
-          meta: { icon: "form", title: "表单", authority: ["admin"] },
+          meta: { icon: "form", title: "表单" },
           children: [
             {
               path: "/form/basic-form",
@@ -118,6 +117,7 @@ const router = new Router({
     {
       path: "*",
       name: "NotFound",
+      hideInMenu: true,
       component: NotFound
     }
   ]
