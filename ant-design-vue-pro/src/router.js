@@ -68,7 +68,7 @@ const router = new Router({
           path: "/form",
           name: "form",
           component: { render: h => h("router-view") },
-          meta: { icon: "form", title: "表单", authority: ["admin"] },
+          meta: { icon: "form", title: "表单" },
           children: [
             {
               path: "/form/basic-form",
