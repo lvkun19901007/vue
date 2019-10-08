@@ -2,7 +2,9 @@
   <div ref="chartDom" style="height:500px;"></div>
 </template>
 <script>
-import echarts from "echarts"
+import echarts from "echarts/lib/echarts"
+import "echarts/lib/chart/bar"
+import "echarts/lib/component/title"
 import { addListener, removeListener } from 'resize-detector'
 import debounce from 'lodash/debounce'
 export default {
@@ -37,7 +39,6 @@ export default {
   },
   methods: {
     resize() {
-      console.log('resize')
       this.chart.resize()
     },
     renderChart () {
